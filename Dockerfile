@@ -14,6 +14,7 @@ ENV BUILDER_VERSION 0.1
 #      io.openshift.tags="builder,x.y.z,etc."
 
 # TODO: Install required packages here:
+RUN echo "installing leveldb, leveldb-devel"
 RUN yum install -y leveldb leveldb-devel && yum clean all -y
 
 # TODO (optional): Copy the builder files into /opt/app-root
