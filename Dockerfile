@@ -15,7 +15,7 @@ ENV BUILDER_VERSION 0.1
 
 # TODO: Install required packages here:
 RUN echo "installing packages..."
-RUN apt-get update -y && apt-get install git python python-pip golang libleveldb1 libleveldb-dev -y
+RUN apt-get update -y && apt-get install git python3 python3-pip golang libleveldb1 libleveldb-dev -y
 #RUN yum install -y leveldb leveldb-devel && yum clean all -y
 
 RUN echo "installing python components via pip..."
@@ -58,4 +58,8 @@ RUN (cd src/github.com/jadeblaquiere/ctcd ; go install . ./cmd/... )
 
 # Down
 
+RUN echo "### cloning msgstore source"
 RUN git clone https://github.com/jadeblaquiere/msgstore.git
+RUN echo "### create msggages, recv directories"
+RUN (cd msgstore ; mkdir messages)
+RUN (cd msgstore ; mkdir recv)
