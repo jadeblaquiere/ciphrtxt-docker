@@ -15,8 +15,7 @@ ENV BUILDER_VERSION 0.1
 
 # TODO: Install required packages here:
 RUN echo "installing leveldb, leveldb-devel"
-RUN sudo apt-get update
-RUN sudo apt-get install libleveldb1 libleveldb-dev
+RUN apt-get update -y && apt-get install git python python-pip golang libleveldb1 libleveldb-dev -y
 #RUN yum install -y leveldb leveldb-devel && yum clean all -y
 
 # TODO (optional): Copy the builder files into /opt/app-root
