@@ -43,8 +43,7 @@ EXPOSE 7764
 # TODO: Set the default CMD for the image
 # CMD ["usage"]
 
-run mkdir -p /usr/local/src/gobase
-ENV GOPATH /usr/local/src/gobase
+ENV GOPATH ~ciphrtxt
 
 #install ctcd
 RUN echo "####### Building ctcd #######"
