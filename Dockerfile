@@ -53,7 +53,7 @@ RUN echo "### download ctcd"
 RUN (cd /home/ciphrtxt/src/github.com/ ; mkdir jadeblaquiere )
 RUN go get github.com/jadeblaquiere/ctcd
 RUN echo "### glide install ctcd"
-RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/workspace/bin/glide install )
+RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/bin/glide install )
 RUN echo "### go install ctcd"
 RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && go install . ./cmd/... )
 
