@@ -43,7 +43,7 @@ EXPOSE 7764
 # TODO: Set the default CMD for the image
 # CMD ["usage"]
 
-ENV GOPATH ~ciphrtxt
+ENV GOPATH /home/ciphrtxt
 
 #install ctcd
 RUN echo "####### Building ctcd #######"
