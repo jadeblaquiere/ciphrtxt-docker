@@ -50,17 +50,16 @@ RUN echo "####### Building ctcd #######"
 RUN echo "### go get glide"
 RUN go get -u github.com/Masterminds/glide
 RUN echo "### download ctcd"
-RUN (cd src/github.com/ ; mkdir jadeblaquiere )
+RUN (cd /home/ciphrtxt/src/github.com/ ; mkdir jadeblaquiere )
 RUN go get github.com/jadeblaquiere/ctcd
 RUN echo "### glide install ctcd"
-RUN (cd src/github.com/jadeblaquiere/ctcd && ~/workspace/bin/glide install )
+RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/workspace/bin/glide install )
 RUN echo "### go install ctcd"
-RUN (cd src/github.com/jadeblaquiere/ctcd && go install . ./cmd/... )
+RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && go install . ./cmd/... )
 
 # Down
 
 RUN echo "### cloning msgstore source"
-RUN git clone https://github.com/jadeblaquiere/msgstore.git
+RUN (cd /home/ciphrtxt && git clone https://github.com/jadeblaquiere/msgstore.git)
 RUN echo "### create msggages, recv directories"
-RUN (cd msgstore ; mkdir messages)
-RUN (cd msgstore ; mkdir recv)
+RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
