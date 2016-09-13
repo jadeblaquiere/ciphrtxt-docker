@@ -47,14 +47,14 @@ EXPOSE 7764
 #install ctcd
 RUN echo "####### Building ctcd #######"
 RUN echo "### go get glide"
-RUN go get -u github.com/Masterminds/glide
+RUN GOPATH=`pwd` && go get -u github.com/Masterminds/glide
 RUN echo "### download ctcd"
 RUN (cd src/github.com/ ; mkdir jadeblaquiere )
-RUN go get github.com/jadeblaquiere/ctcd
+RUN GOPATH=`pwd` && go get github.com/jadeblaquiere/ctcd
 RUN echo "### glide install ctcd"
-RUN (cd src/github.com/jadeblaquiere/ctcd ; ~/workspace/bin/glide install )
+RUN (GOPATH=`pwd` && cd src/github.com/jadeblaquiere/ctcd && ~/workspace/bin/glide install )
 RUN echo "### go install ctcd"
-RUN (cd src/github.com/jadeblaquiere/ctcd ; go install . ./cmd/... )
+RUN (GOPATH=`pwd` && cd src/github.com/jadeblaquiere/ctcd && go install . ./cmd/... )
 
 # Down
 
