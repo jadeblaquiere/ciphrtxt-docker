@@ -45,6 +45,10 @@ EXPOSE 7764
 # CMD ["usage"]
 
 ENV GOPATH /home/ciphrtxt
+ENV RPCUSERNAME rpcuser
+ENV RPCPASSWORD rpcpass
+ENV EXTHOSTNAME localhost
+ENV NAKPRIV "0000000000000000000000000000000000000000000000000000000000000000"
 
 #install ctcd
 RUN echo "####### Building ctcd #######"
@@ -65,4 +69,8 @@ RUN (cd /home/ciphrtxt && git clone https://github.com/jadeblaquiere/msgstore.gi
 RUN echo "### create msggages, recv directories"
 RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
 
-CMD (~/bin/ctcd --nodnsseed --addpeer indigo.ciphrtxt.com --addpeer indigo.bounceme.net --addpeer violet.ciphrtxt.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &) && cd ~/msgstore &&python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV
+RUN echo "#!/usr/bin/env sh" > /home/ciphrtxt/run.sh
+RUN echo "~/bin/ctcd --nodnsseed --addpeer indigo.ciphrtxt.com --addpeer indigo.bounceme.net --addpeer violet.ciphrtxt.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &" >> /home/ciphrtxt/run.sh
+RUN echo "(cd ~/msgstore && python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV)" >> run.sh
+
+CMD /usr/ciphrtxt/run.sh
