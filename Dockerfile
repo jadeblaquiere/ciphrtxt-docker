@@ -48,7 +48,8 @@ ENV GOPATH /home/ciphrtxt
 ENV RPCUSERNAME rpcuser
 ENV RPCPASSWORD rpcpass
 ENV EXTHOSTNAME localhost
-ENV NAKPRIV "0000000000000000000000000000000000000000000000000000000000000000"
+ENV MININGPUBKEY CKxrrgp9r62FMwVZUGd2x3dnnhLzpYzQZk
+ENV NAKPRIV ca92102f1fde262153ceeeaff7f5e4e98077dfb2adfa829e69581d0115acb83c
 
 #install ctcd
 RUN echo "####### Building ctcd #######"
@@ -72,5 +73,7 @@ RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
 RUN echo "#!/usr/bin/env sh" > /home/ciphrtxt/run.sh
 RUN echo "~/bin/ctcd --nodnsseed --addpeer indigo.ciphrtxt.com --addpeer indigo.bounceme.net --addpeer violet.ciphrtxt.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &" >> /home/ciphrtxt/run.sh
 RUN echo "(cd ~/msgstore && python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV)" >> /home/ciphrtxt/run.sh
+
+RUN chmod 755 /home/ciphrtxt/run.sh
 
 CMD /home/ciphrtxt/run.sh
