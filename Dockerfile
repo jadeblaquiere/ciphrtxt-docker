@@ -71,6 +71,6 @@ RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
 
 RUN echo "#!/usr/bin/env sh" > /home/ciphrtxt/run.sh
 RUN echo "~/bin/ctcd --nodnsseed --addpeer indigo.ciphrtxt.com --addpeer indigo.bounceme.net --addpeer violet.ciphrtxt.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &" >> /home/ciphrtxt/run.sh
-RUN echo "(cd ~/msgstore && python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV)" >> run.sh
+RUN echo "(cd ~/msgstore && python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV)" >> /home/ciphrtxt/run.sh
 
-CMD /usr/ciphrtxt/run.sh
+CMD /home/ciphrtxt/run.sh
