@@ -43,18 +43,20 @@ EXPOSE 7764
 # TODO: Set the default CMD for the image
 # CMD ["usage"]
 
+run mkdir -p /usr/local/src/gobase
+ENV GOPATH /usr/local/src/gobase
 
 #install ctcd
 RUN echo "####### Building ctcd #######"
 RUN echo "### go get glide"
-RUN GOPATH=`pwd` && go get -u github.com/Masterminds/glide
+RUN go get -u github.com/Masterminds/glide
 RUN echo "### download ctcd"
 RUN (cd src/github.com/ ; mkdir jadeblaquiere )
-RUN GOPATH=`pwd` && go get github.com/jadeblaquiere/ctcd
+RUN go get github.com/jadeblaquiere/ctcd
 RUN echo "### glide install ctcd"
-RUN (GOPATH=`pwd` && cd src/github.com/jadeblaquiere/ctcd && ~/workspace/bin/glide install )
+RUN (cd src/github.com/jadeblaquiere/ctcd && ~/workspace/bin/glide install )
 RUN echo "### go install ctcd"
-RUN (GOPATH=`pwd` && cd src/github.com/jadeblaquiere/ctcd && go install . ./cmd/... )
+RUN (cd src/github.com/jadeblaquiere/ctcd && go install . ./cmd/... )
 
 # Down
 
