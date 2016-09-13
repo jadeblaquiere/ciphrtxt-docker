@@ -21,6 +21,7 @@ RUN apt-get update -y && apt-get install git python3 python3-pip golang liblevel
 RUN echo "installing python components via pip..."
 RUN pip3 install tornado requests requests_futures plyvel pycrypto
 RUN pip3 install git+https://github.com/jadeblaquiere/ecpy.git
+RUN pip3 install git+https://github.com/jadeblaquiere/ciphrtxt-lib.git
 RUN pip3 install git+https://github.com/jadeblaquiere/python-ctcoinlib.git
 
 # TODO (optional): Copy the builder files into /opt/app-root
