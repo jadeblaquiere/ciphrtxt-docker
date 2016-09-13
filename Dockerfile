@@ -8,10 +8,10 @@ MAINTAINER Joseph deBlaquiere <jadeblaquiere@yahoo.com>
 ENV BUILDER_VERSION 0.1
 
 # TODO: Set labels used in OpenShift to describe the builder image
-#LABEL io.k8s.description="Platform for building xyz" \
-#      io.k8s.display-name="builder x.y.z" \
-#      io.openshift.expose-services="8080:http" \
-#      io.openshift.tags="builder,x.y.z,etc."
+LABEL io.k8s.description="ciphrtxt full node (msgstore + coin service)" \
+      io.k8s.display-name="ciphrtxt 0.2" \
+      io.openshift.expose-services="7754:http,7764/tcp:ctcd" \
+      io.openshift.tags="golang,python3,tornado,leveldb"
 
 # TODO: Install required packages here:
 RUN echo "installing packages..."
@@ -63,3 +63,5 @@ RUN echo "### cloning msgstore source"
 RUN (cd /home/ciphrtxt && git clone https://github.com/jadeblaquiere/msgstore.git)
 RUN echo "### create msggages, recv directories"
 RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
+
+CMD (~/bin/ctcd --nodnsseed --addpeer indigo.bounceme.net --addpeer coopr8.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &) && cd ~/msgstore &&python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV 
