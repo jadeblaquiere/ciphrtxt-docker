@@ -64,4 +64,4 @@ RUN (cd /home/ciphrtxt && git clone https://github.com/jadeblaquiere/msgstore.gi
 RUN echo "### create msggages, recv directories"
 RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
 
-CMD (~/bin/ctcd --nodnsseed --addpeer indigo.bounceme.net --addpeer coopr8.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &) && cd ~/msgstore &&python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV 
+CMD (~/bin/ctcd --nodnsseed --addpeer indigo.ciphrtxt.com --addpeer indigo.bounceme.net --addpeer violet.ciphrtxt.com --txindex --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --miningaddr $MININGPUBKEY &) && cd ~/msgstore &&python3 ./app.py --rpcuser=$RPCUSERNAME --rpcpass=$RPCPASSWORD --exthost=$C9_HOSTNAME --extport=80 --listenport=$PORT --nakpriv=$NAKPRIV
