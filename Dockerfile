@@ -71,7 +71,7 @@ RUN echo "### create msggages, recv directories"
 RUN (cd /home/ciphrtxt/msgstore && mkdir messages && mkdir recv)
 
 RUN echo "#!/usr/bin/env sh" > /home/ciphrtxt/run.sh
-RUN echo "if [ \$EXTHOSTNAME = \"locahost\" ] ; then if [ \$DOCKERCLOUD_CONTAINER_FQDN != \"\" ] ; then export EXTHOSTNAME=\"\$DOCKERCLOUD_CONTAINER_FQDN\" ; fi; fi" >> /home/ciphrtxt/run.sh
+RUN echo "if [ \$EXTHOSTNAME = \"locahost\" ] && [ \$DOCKERCLOUD_CONTAINER_FQDN != \"\" ] ; then export EXTHOSTNAME=\"\$DOCKERCLOUD_CONTAINER_FQDN\" ; fi" >> /home/ciphrtxt/run.sh
 RUN echo "/home/ciphrtxt/bin/ctcd --nodnsseed --addpeer indigo.ciphrtxt.com --addpeer indigo.bounceme.net --addpeer violet.ciphrtxt.com --txindex --rpcuser=\$RPCUSERNAME --rpcpass=\$RPCPASSWORD --miningaddr \$MININGPUBKEY &" >> /home/ciphrtxt/run.sh
 RUN echo "(cd /home/ciphrtxt/msgstore && python3 ./app.py --rpcuser=\$RPCUSERNAME --rpcpass=\$RPCPASSWORD --exthost=\$EXTHOSTNAME --nakpriv=\$NAKPRIV)" >> /home/ciphrtxt/run.sh
 
