@@ -53,16 +53,17 @@ ENV NAKPRIV ca92102f1fde262153ceeeaff7f5e4e98077dfb2adfa829e69581d0115acb83c
 
 #install ctcd
 RUN go get -u github.com/Masterminds/glide
-RUN (cd /home/ciphrtxt/src/github.com/ ; mkdir jadeblaquiere )
-RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere ; git clone https://github.com/jadeblaquiere/ctcutil)
-RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere ; git clone https://github.com/jadeblaquiere/ctcd)
+#RUN (cd /home/ciphrtxt/src/github.com/ ; mkdir jadeblaquiere )
+#RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere ; git clone https://github.com/jadeblaquiere/ctcutil)
+#RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere ; git clone https://github.com/jadeblaquiere/ctcd)
 
-RUN go get github.com/btcsuite/fastsha256
-RUN go get github.com/btcsuite/golangcrypto/ripemd160
-RUN go get github.com/btcsuite/snappy-go
+#RUN go get github.com/btcsuite/fastsha256
+#RUN go get github.com/btcsuite/golangcrypto/ripemd160
+#RUN go get github.com/btcsuite/snappy-go
+#RUN go get github.com/btcsuite/snappy
 RUN go get github.com/jadeblaquiere/ctcd
 
-RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/bin/glide install )
+#RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/bin/glide install )
 RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && go install . ./cmd/ctcctl/... )
 
 # install msgstore
