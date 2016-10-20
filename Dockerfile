@@ -60,6 +60,7 @@ RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere ; git clone https://github.c
 RUN go get github.com/btcsuite/fastsha256
 RUN go get github.com/btcsuite/golangcrypto/ripemd160
 RUN go get github.com/btcsuite/snappy-go
+RUN go get github.com/jadeblaquiere/ctcd
 
 RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/bin/glide install )
 RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && go install . ./cmd/ctcctl/... )
