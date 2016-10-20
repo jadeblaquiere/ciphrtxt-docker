@@ -61,9 +61,11 @@ RUN go get -u github.com/Masterminds/glide
 #RUN go get github.com/btcsuite/golangcrypto/ripemd160
 #RUN go get github.com/btcsuite/snappy-go
 #RUN go get github.com/btcsuite/snappy
-RUN go get github.com/jadeblaquiere/ctcd
+RUN (go get github.com/jadeblaquiere/ctcrpcclient)
+RUN (go get github.com/jadeblaquiere/ctcutil)
+RUN (go get github.com/jadeblaquiere/ctcd)
 
-#RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/bin/glide install )
+RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && ~/bin/glide install )
 RUN (cd /home/ciphrtxt/src/github.com/jadeblaquiere/ctcd && go install . ./cmd/ctcctl/... )
 
 # install msgstore
